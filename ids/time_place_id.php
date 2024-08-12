@@ -41,4 +41,4 @@ function placePart(string $query = 'United+Kingdom,Greenwich'): string
 	return "$negLat$hexLat-$negLon$hexLon";
 }
 
-echo timePart() . '-' . $argv[2] ?? placePart($argv[1] ?? 'United+Kingdom,Greenwich'), PHP_EOL;
+echo timePart() . '-' . ($argv[2] ?? placePart($argv[1] ?? 'United+Kingdom,Greenwich')), PHP_EOL;
