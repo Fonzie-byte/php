@@ -4,15 +4,6 @@
  * This script returns a random, Fischer-random-valid board.
  */
 
-$latinToPiece = [
-	'P' => ['♙', '♟︎'],
-	'N' => ['♘', '♞'],
-	'B' => ['♗', '♝'],
-	'R' => ['♖', '♜'],
-	'Q' => ['♕', '♛'],
-	'K' => ['♔', '♚'],
-];
-
 $whiteToBlack = [
 	'♙' => '♟︎',
 	'♘' => '♞',
@@ -53,19 +44,20 @@ function shufflePieces(): array
 
 $white = shufflePieces();
 
+if (@$argv[1] === 'minimal')
+	echo implode('', $white), PHP_EOL;
+else {
 $black = [];
-foreach ($white as $piece)
-	$black[] = $whiteToBlack[$piece];
+	foreach ($white as $piece)
+		$black[] = $whiteToBlack[$piece];
 
-echo match(@$argv[1]) {
-    'minimal' => implode('', $white) . PHP_EOL,
-    default => '8 ' . implode(' ', $black) . PHP_EOL .
-        '7 ' . '♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎' . PHP_EOL .
-        '6 ' . PHP_EOL .
-        '5 ' . PHP_EOL .
-        '4 ' . PHP_EOL .
-        '3 ' . PHP_EOL .
-        '2 ' . '♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙' . PHP_EOL .
-        '1 ' . implode(' ', $white) . PHP_EOL .
-        '  a b c d e f g h' . PHP_EOL,
-};
+	echo '8 ' . implode(' ', $black) . PHP_EOL .
+		'7 ' . '♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎' . PHP_EOL .
+        	'6 ' . PHP_EOL .
+        	'5 ' . PHP_EOL .
+        	'4 ' . PHP_EOL .
+        	'3 ' . PHP_EOL .
+        	'2 ' . '♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙' . PHP_EOL .
+        	'1 ' . implode(' ', $white) . PHP_EOL .
+        	'  a b c d e f g h' . PHP_EOL;
+}
