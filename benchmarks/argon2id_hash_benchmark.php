@@ -8,7 +8,7 @@ $cost = 0;
 do {
 	$cost++;
 	$start = microtime(true);
-	password_hash('B9Dbg\\?)]#pP|UrY#UYW', PASSWORD_ARGON2ID	, ['time' => $cost]);
+	password_hash('B9Dbg\\?)]#pP|UrY#UYW', PASSWORD_ARGON2ID, ['time' => $cost]);
 	$end = microtime(true);
 } while (($end - $start) < $timeTarget);
 

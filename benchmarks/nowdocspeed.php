@@ -4,7 +4,7 @@
 
 $start = (double) microtime();
 
-for ($i=0; $i < 1000000; $i++)
+for ($i=0; $i < 1_000_000; $i++)
 {
 	$var = "var";
 }
@@ -19,7 +19,7 @@ echo "Double quotes took $timeForDouble seconds\n";
 
 $start = (double) microtime();
 
-for ($i=0; $i < 1000000; $i++)
+for ($i=0; $i < 1_000_000; $i++)
 {
 	$var = <<<'EOD'
 	var
