@@ -6,7 +6,7 @@ class AnyBaseConverter
 
     public function __construct(private readonly string $alphabet = '0123456789abcdefghijklmnopqrstuvwxyz')
     {
-        $this->base = strlen($this->alphabet);
+        $this->base = mb_strlen($this->alphabet, 'UTF-8');
     }
 
     private function divisionWithRemainder(float $dividend, float $divisor): array
@@ -20,17 +20,17 @@ class AnyBaseConverter
     private function indexFromAlphabet(int $number): string
     {
         if ($number < 0 || $number >= $this->base)
-            throw new Exception("$number passed to a $this->alphabet characters long alphabet. Please pass a number over 0 and under $this->base.");
+            throw new Exception("$number passed to base $this->alphabet. Please pass a number over 0 and under $this->base.");
 
-        return $this->alphabet[$number];
+	return mb_substr($this->alphabet, $number, 1, 'UTF-8');
     }
 
     public function convert(int $original_number): string
     {
         if ($original_number < 0)
             return '';
-        else if ($original_number === 0)
-            return $this->alphabet[0];
+        else if ($original_number < $this->base)
+            return $this->indexFromAlphabet($original_number);
 
         $result = '';
         $current_number = $original_number;
